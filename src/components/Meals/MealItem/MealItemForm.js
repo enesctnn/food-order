@@ -1,9 +1,17 @@
+import { useState } from 'react';
 import Input from '../../UI/Input/Input';
 import classes from './MealItemForm.module.css';
 
 const MealItemForm = (props) => {
+  const [orderList, setOrderList] = useState([]);
+
+  const submitHandler = (props) => {
+    props.preventDefault();
+    setOrderList((prevOrders) => {});
+  };
+
   return (
-    <form className={classes.form}>
+    <form onSubmit={submitHandler} className={classes.form}>
       <Input
         label="Amount"
         input={{
