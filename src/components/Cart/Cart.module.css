@@ -3,7 +3,23 @@
   margin: 0;
   padding: 0;
   max-height: 20rem;
-  overflow: auto;
+  overflow-y: scroll;
+}
+
+.cart-items::-webkit-scrollbar {
+  width: 7px;
+}
+
+.cart-items::-webkit-scrollbar-track {
+  background-color: transparent;
+}
+
+.cart-items::-webkit-scrollbar-thumb {
+  background: rgba(128, 83, 0, 0.8);
+  border-radius: 6px;
+}
+.cart-items::-webkit-scrollbar-thumb:hover {
+  background: rgb(128, 83, 0);
 }
 
 .total {

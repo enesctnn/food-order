@@ -4,11 +4,11 @@ import classes from './MealItemForm.module.css';
 import CartContext from '../../../store/cart-context';
 
 const MealItemForm = (props) => {
-  const { cartItemHandler } = useContext(CartContext);
+  const { addItem } = useContext(CartContext);
 
   const submitHandler = (event, meal, amount) => {
     event.preventDefault();
-    cartItemHandler(meal, amount);
+    addItem(meal, amount);
   };
 
   const amountInputRef = useRef();
