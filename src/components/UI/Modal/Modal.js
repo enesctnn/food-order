@@ -1,11 +1,9 @@
 import classes from './Modal.module.css';
-import { Fragment, useContext } from 'react';
+import { Fragment } from 'react';
 import ReactDOM from 'react-dom';
-import MealContext from '../../../store/meal-context';
 
-const Backdrop = () => {
-  const { onCloseCart } = useContext(MealContext);
-  return <div className={classes.backdrop} onClick={onCloseCart}></div>;
+const Backdrop = (props) => {
+  return <div className={classes.backdrop} onClick={props.onClick}></div>;
 };
 
 const ModalOverlay = (props) => {
@@ -21,7 +19,10 @@ const portalElement = document.getElementById('overlays');
 const Modal = (props) => {
   return (
     <Fragment>
-      {ReactDOM.createPortal(<Backdrop />, portalElement)}
+      {ReactDOM.createPortal(
+        <Backdrop onClick={props.onClose} />,
+        portalElement
+      )}
       {ReactDOM.createPortal(
         <ModalOverlay>{props.children}</ModalOverlay>,
         portalElement

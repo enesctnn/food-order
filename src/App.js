@@ -1,16 +1,22 @@
-import React, { useContext } from 'react';
+import React, { useState } from 'react';
 import Header from './components/Layout/Header';
 import Meals from './components/Meals/Meals';
 import Cart from './components/Cart/Cart';
-import MealContext from './store/meal-context';
 
 function App() {
-  const { cartOpenStatus } = useContext(MealContext);
+  const [cartOpenStatus, setCartOpenStatus] = useState(false);
+
+  const cartClickHandler = () => {
+    setCartOpenStatus(true);
+  };
+  const closeCartHandler = () => {
+    setCartOpenStatus(false);
+  };
 
   return (
     <React.Fragment>
-      {cartOpenStatus ? <Cart /> : ''}
-      <Header />
+      {cartOpenStatus && <Cart onClose={closeCartHandler} />}
+      <Header onCartClick={cartClickHandler} />
       <main>
         <Meals />
       </main>
