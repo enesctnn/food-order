@@ -5,7 +5,7 @@ import CartContext from '../../store/cart-context';
 import CartItem from './CartItem';
 
 const Cart = (props) => {
-  const { items, totalAmount } = useContext(CartContext);
+  const { items, totalAmount, addItem, removeItem } = useContext(CartContext);
 
   const hasItems = items.length > 0;
 
@@ -16,8 +16,11 @@ const Cart = (props) => {
         <CartItem
           key={item.id}
           name={item.name}
-          amount={item.amount}
-          price={item.price}
+          amount={+item.amount}
+          price={+item.price}
+          item={item}
+          onRemove={removeItem}
+          onAdd={addItem}
         ></CartItem>
       ))}
     </ul>

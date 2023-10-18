@@ -22,7 +22,6 @@ export const CartContextProvider = (props) => {
     }
     if (matchingItem) {
       matchingItem.amount += Number(amount);
-      console.log(items);
       setItems((prevItems) => {
         return [...prevItems];
       });
@@ -39,7 +38,27 @@ export const CartContextProvider = (props) => {
     }
   };
 
-  const removeItemFromCartHandler = (id) => {};
+  const removeItemFromCartHandler = (id) => {
+    let matchingItem;
+    for (const item of items) {
+      if (item.id === id) {
+        matchingItem = item;
+      }
+    }
+    if (matchingItem) {
+      if (matchingItem.amount === 1) {
+        const updatedItem = items.filter((item) => {
+          return item.id !== id;
+        });
+        setItems(updatedItem);
+      } else {
+        matchingItem.amount--;
+        setItems((prevItems) => {
+          return [...prevItems];
+        });
+      }
+    }
+  };
 
   const cartContext = {
     items,
